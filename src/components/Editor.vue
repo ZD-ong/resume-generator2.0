@@ -13,33 +13,10 @@
     </nav>
     <ol class="content">
       <li v-bind:class="{active: currentTab === 0}">
-        <h3>个人信息</h3>
-        <el-form>
-          <el-form-item label="姓名">
-            <el-input v-model="profile.name"></el-input>
-          </el-form-item>
-          <el-form-item label="城市">
-            <el-input v-model="profile.city"></el-input>
-          </el-form-item>
-          <el-form-item label="年龄">
-            <el-input v-model="profile.age"></el-input>
-          </el-form-item>
-        </el-form>
+        <ProfileEditor :profile="profile"></ProfileEditor>
       </li>
       <li v-bind:class="{active: currentTab === 1}">
-        <h3>工作经历</h3>
-        <el-form>
-          <div class="container" v-for="(item, index) in experience">
-            <el-form-item label="公司">
-              <el-input v-model="experience.company"></el-input>
-            </el-form-item>
-            <el-form-item label="工作内容">
-              <el-input v-model="experience.content"></el-input>
-            </el-form-item>
-            <i class="el-icon-delete" @click="removeExperience(index)"></i>
-          </div>
-          <el-button type="danger" @click="addExperience">添加工作经历</el-button>
-        </el-form>
+        <ExperienceEditor :experience="experience"></ExperienceEditor>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
         <h3>
@@ -67,7 +44,10 @@
   </div>
 </template>
 <script>
+  import ProfileEditor from './ProfileEditor'
+  import ExperienceEditor from './ExperienceEditor'
   export default {
+    components: { ProfileEditor, ExperienceEditor},
     data(){
       return {
         currentTab: 0,
@@ -80,17 +60,6 @@
         experience: [
           {company: '', content: ''}
         ]
-      }
-    },
-    methods: {
-      addExperience(){
-        this.experience.push({
-          company:'',
-          content: ''
-        })
-      },
-      removeExperience(index){
-        this.experience.splice(index,1)
       }
     }
   }
