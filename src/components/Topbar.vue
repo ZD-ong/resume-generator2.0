@@ -6,10 +6,10 @@
     <div class="actions">
       <el-row>
         <el-button type="danger">注册</el-button>
-        <el-button>登录</el-button>
+        <el-button type="danger" plain>登录</el-button>
       </el-row>
     </div>
-  </div>
+</div>
 </template>
 <style lang="scss">
   #topbar {
