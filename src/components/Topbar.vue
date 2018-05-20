@@ -12,11 +12,18 @@
 </div>
 </template>
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Pacifico');
+
   #topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px;
-    font-size: 20px;
+    padding: 8px 16px;
+    font-size: 24px;
+    .logo {
+      padding: 0 8px;
+      font-family: 'Pacifico', cursive;
+      color: #f56c6c;
+    }
   }
 </style>

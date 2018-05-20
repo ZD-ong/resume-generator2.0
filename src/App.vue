@@ -28,10 +28,17 @@ export default {
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
+  h1,h2,h3 {
+    font-weight: 300;
+  }
+  button {
+    font-weight: 400;
+  }
 }
   .topbar {
     position: relative;
@@ -49,11 +56,12 @@ export default {
     flex: 1;
     background: #ddd;
     > .editor {
+      transition: all 0.3s;
       width: 40em;
       margin: 16px 8px 16px 16px;
       background: #fff;
       box-shadow: 0 0 3px hsla(0,0,0,0.5);
-      border-radius: 2px;
+      border-radius: 3px;
       overflow: hidden;
     }
     > .preview {
@@ -61,7 +69,7 @@ export default {
       margin: 16px 16px 16px 8px;
       background: #fff;
       box-shadow: 0 0 3px hsla(0,0,0,0.5);
-      border-radius: 2px;
+      border-radius: 3px;
       overflow: hidden;
     }
   }

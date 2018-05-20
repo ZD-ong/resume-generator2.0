@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>个人信息</h3>
+    <h1>个人信息</h1>
     <el-form>
       <el-form-item label="姓名">
         <el-input v-model="profile.name"></el-input>
@@ -10,6 +10,12 @@
       </el-form-item>
       <el-form-item label="年龄">
         <el-input v-model="profile.age"></el-input>
+      </el-form-item>
+      <el-form-item label="电话">
+        <el-input v-model="profile.phone"></el-input>
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input v-model="profile.email"></el-input>
       </el-form-item>
     </el-form>
   </div>
