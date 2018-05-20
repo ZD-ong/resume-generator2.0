@@ -4,10 +4,10 @@
     <el-form>
       <div class="container" v-for="(item, index) in experience">
         <el-form-item label="公司">
-          <el-input v-model="experience.company"></el-input>
+          <el-input v-model="item.company"></el-input>
         </el-form-item>
         <el-form-item label="工作内容">
-          <el-input v-model="experience.content"></el-input>
+          <el-input v-model="item.content"></el-input>
         </el-form-item>
         <i class="el-icon-delete" @click="removeExperience(index)"></i>
       </div>

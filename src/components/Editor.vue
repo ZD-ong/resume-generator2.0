@@ -19,9 +19,7 @@
         <ExperienceEditor :experience="experience"></ExperienceEditor>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
-        <h3>
-          教育经历
-        </h3>
+        <EducationEditor :education="education"></EducationEditor>
       </li>
       <li v-bind:class="{active: currentTab === 3}">
         <h3>
@@ -46,8 +44,9 @@
 <script>
   import ProfileEditor from './ProfileEditor'
   import ExperienceEditor from './ExperienceEditor'
+  import EducationEditor from  './EducationEditor'
   export default {
-    components: { ProfileEditor, ExperienceEditor},
+    components: { ProfileEditor, ExperienceEditor, EducationEditor},
     data(){
       return {
         currentTab: 0,
@@ -59,7 +58,12 @@
         },
         experience: [
           {company: '', content: ''}
-        ]
+        ],
+        education: [{
+          school: '',
+          duration: '',
+          degree: ''
+        }]
       }
     }
   }
