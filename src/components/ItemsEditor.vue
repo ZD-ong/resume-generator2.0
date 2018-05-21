@@ -8,7 +8,7 @@
         </el-form-item>
         <i class="el-icon-delete" @click="removeItems(index)"></i>
       </div>
-      <el-button type="danger" @click="addItems" size="small" autofocus="false">添加</el-button>
+      <el-button type="danger" @click="addItems" size="mini">添加</el-button>
     </el-form>
   </div>
 </template>

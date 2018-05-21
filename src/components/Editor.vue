@@ -13,25 +13,25 @@
     </nav>
     <ol class="content">
       <li v-bind:class="{active: currentTab === 0}">
-        <ProfileEditor :profile="profile"></ProfileEditor>
+        <ProfileEditor :profile="resume.profile"></ProfileEditor>
       </li>
       <li v-bind:class="{active: currentTab === 1}">
-        <ItemsEditor :items="experience" :labels="{company:'公司', content:'工作内容'}" :title="'工作经历'"></ItemsEditor>
+        <ItemsEditor :items="resume.experience" :labels="{company:'公司', content:'工作内容'}" :title="'工作经历'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
-        <ItemsEditor :items="education" :labels="{school:'学校', duration:'时间', degree:'学位'}" :title="'教育经历'"></ItemsEditor>
+        <ItemsEditor :items="resume.education" :labels="{school:'学校', duration:'时间', degree:'学位'}" :title="'教育经历'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 3}">
-        <ItemsEditor :items="skills" :labels="{name:'技能名称', description:'技能简述'}" :title="'技能'"></ItemsEditor>
+        <ItemsEditor :items="resume.skills" :labels="{name:'技能名称', description:'技能简述'}" :title="'技能'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 4}">
-        <ItemsEditor :items="projects" :labels="{name:'项目名称', link:'项目链接', description:'项目描述', keywords:'技术栈'}" :title="'项目经历'"></ItemsEditor>
+        <ItemsEditor :items="resume.projects" :labels="{name:'项目名称', link:'项目链接', description:'项目描述', keywords:'技术栈'}" :title="'项目经历'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 5}">
-        <ItemsEditor :items="awards" :labels="{name:'奖项名称', time:'获奖时间'}" :title="'获奖情况'"></ItemsEditor>
+        <ItemsEditor :items="resume.awards" :labels="{name:'奖项名称', time:'获奖时间'}" :title="'获奖情况'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 6}">
-        <ItemsEditor :items="social" :labels="{name:'社交平台', link:'链接'}" :title="'社交'"></ItemsEditor>
+        <ItemsEditor :items="resume.social" :labels="{name:'社交平台', link:'链接'}" :title="'社交'"></ItemsEditor>
       </li>
       <!--<li v-for="i in [0,1,2,3,4,5]"-->
           <!--:class="{active:currentTab === i}">{{i}}</li>-->
@@ -43,44 +43,12 @@
   import ItemsEditor from './ItemsEditor'
 
   export default {
+    props: ['resume'],
     components: { ProfileEditor, ItemsEditor},
     data(){
       return {
         currentTab: 0,
         icons: ['profile','work','study','tool','project','prize','twitter'],
-        profile: {
-          name: '',
-          city: '',
-          age: '',
-          phone: '',
-          email: ''
-        },
-        experience: [
-          {company: '', content: ''}
-        ],
-        education: [{
-          school: '',
-          duration: '',
-          degree: ''
-        }],
-        skills: [{
-          name: '',
-          description: ''
-        }],
-        projects: [{
-          name: '',
-          link: '',
-          description: '',
-          keywords: ''
-        }],
-        awards: [{
-          name: '',
-          time: ''
-        }],
-        social: [{
-          name: '',
-          link: ''
-        }]
       }
     }
   }

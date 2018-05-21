@@ -21,7 +21,8 @@
     padding: 8px 16px;
     font-size: 24px;
     .logo {
-      padding: 0 8px;
+      padding: 8px 16px;
+      font-size: 28px;
       font-family: 'Pacifico', cursive;
       color: #f56c6c;
     }
