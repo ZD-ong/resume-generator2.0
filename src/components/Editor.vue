@@ -16,10 +16,10 @@
         <ProfileEditor :profile="resume.profile"></ProfileEditor>
       </li>
       <li v-bind:class="{active: currentTab === 1}">
-        <ItemsEditor :items="resume.experience" :labels="{company:'公司', content:'工作内容'}" :title="'工作经历'"></ItemsEditor>
+        <ItemsEditor :items="resume.education" :labels="{school:'学校', duration:'时间', degree:'学位'}" :title="'教育经历'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 2}">
-        <ItemsEditor :items="resume.education" :labels="{school:'学校', duration:'时间', degree:'学位'}" :title="'教育经历'"></ItemsEditor>
+        <ItemsEditor :items="resume.experience" :labels="{company:'公司',position:'职位', content:'工作内容'}" :title="'工作经历'"></ItemsEditor>
       </li>
       <li v-bind:class="{active: currentTab === 3}">
         <ItemsEditor :items="resume.skills" :labels="{name:'技能名称', description:'技能简述'}" :title="'技能'"></ItemsEditor>
@@ -48,7 +48,7 @@
     data(){
       return {
         currentTab: 0,
-        icons: ['profile','work','study','tool','project','prize','twitter'],
+        icons: ['profile','study','work','tool','project','prize','twitter'],
       }
     }
   }

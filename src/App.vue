@@ -26,9 +26,11 @@ export default {
           email: '',
           phone: ''
         },
-        experience: [
-          {company: '', content: ''}
-        ],
+        experience: [{
+          company: '',
+          position: '',
+          content: ''
+        }],
         education: [{
           school: '',
           duration: '',
@@ -100,7 +102,7 @@ export default {
     fill: currentColor;
     overflow: hidden;
   }
-  main {
+  #app main {
     display: flex;
     flex: 1;
     background: url("https://i.loli.net/2018/05/21/5b025efc0dd2d.jpg");
@@ -120,7 +122,11 @@ export default {
       background: #fff;
       box-shadow: 0 0 3px hsla(0,0,0,0.5);
       border-radius: 3px;
-      overflow: hidden;
+      overflow: auto;
+    }
+    .fullScreen {
+      padding: 32px;
+      margin: 64px 160px;
     }
   }
 
