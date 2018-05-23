@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <Topbar  class="topbar" v-show="!previewMode"></Topbar>
+    <Topbar  class="topbar" v-show="!previewMode,!signUpMode" @xxx="signUp"></Topbar>
     <main>
-      <Editor :resume="resume" class="editor" v-show="!previewMode"></Editor>
-      <Preview :resume="resume" class="preview" @preview="preview" @exitPreview="exitPreview"></Preview>
+      <Editor :resume="resume" class="editor" v-show="!previewMode,!signUpMode"></Editor>
+      <Preview :resume="resume" class="preview" @preview="preview" @exitPreview="exitPreview" v-show="!signUpMode"></Preview>
+      <SignUp :resume="resume" class="signUp" v-show="signUpMode"></SignUp>
     </main>
   </div>
 </template>
@@ -12,12 +13,14 @@
 import Topbar from './components/Topbar'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
+import SignUp from './components/SignUp'
 
 export default {
   name: 'App',
   data(){
     return{
       previewMode: false,
+      signUpMode: false,
       resume: {
         profile: {
           name: '',
@@ -63,10 +66,13 @@ export default {
     },
     exitPreview(){
       this.previewMode = false
+    },
+    signUp(){
+      this.signUpMode = true
     }
   },
   components: {
-    Topbar, Editor, Preview
+    Topbar, Editor, Preview, SignUp
   }
 }
 </script>
@@ -104,6 +110,7 @@ export default {
   }
   #app main {
     display: flex;
+    position: relative;
     flex: 1;
     background: url("https://i.loli.net/2018/05/21/5b025efc0dd2d.jpg");
     background-size: cover;
@@ -124,9 +131,20 @@ export default {
       border-radius: 3px;
       overflow: auto;
     }
+    > .signUp {
+      position: absolute;
+      width: 300px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      margin-left: -150px;
+      margin-top: -200px;
+      box-shadow: 0 0 8px hsla(0,0,0,0.8);
+      border-radius: 3px;
+    }
     .fullScreen {
       padding: 32px;
-      margin: 64px 160px;
+      margin: 72px 160px;
     }
   }
 

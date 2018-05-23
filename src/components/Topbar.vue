@@ -5,12 +5,23 @@
     </div>
     <div class="actions">
       <el-row>
-        <el-button type="danger">注册</el-button>
-        <el-button type="danger" plain>登录</el-button>
+        <el-button type="danger" @click="signUp">登录</el-button>
       </el-row>
     </div>
 </div>
 </template>
+<script>
+export default {
+  methods: {
+    signUp(){
+      this.$emit('xxx')
+      this.$emit('yyy')
+    }
+  }
+}
+
+</script>
+
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
