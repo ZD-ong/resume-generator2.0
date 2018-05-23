@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Topbar  class="topbar" v-show="!previewMode,!signUpMode" @xxx="signUp"></Topbar>
+    <Topbar  class="topbar" v-show="!previewMode&&!LoginMode" @goToLogin="LoginMode = true"></Topbar>
     <main>
-      <Editor :resume="resume" class="editor" v-show="!previewMode,!signUpMode"></Editor>
-      <Preview :resume="resume" class="preview" @preview="preview" @exitPreview="exitPreview" v-show="!signUpMode"></Preview>
-      <SignUp :resume="resume" class="signUp" v-show="signUpMode"></SignUp>
+      <Editor :resume="resume" class="editor" v-show="!previewMode&&!LoginMode"></Editor>
+      <Preview :resume="resume" class="preview" @preview="previewMode = true" @exitPreview="previewMode = false" v-show="!LoginMode"></Preview>
+      <Login :resume="resume" class="login" v-show="LoginMode" @goToSignUp="goToSignUp" @back="LoginMode=false"></Login>
     </main>
   </div>
 </template>
@@ -13,14 +13,14 @@
 import Topbar from './components/Topbar'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
-import SignUp from './components/SignUp'
+import Login from './components/Login'
 
 export default {
   name: 'App',
   data(){
     return{
       previewMode: false,
-      signUpMode: false,
+      LoginMode: false,
       resume: {
         profile: {
           name: '',
@@ -60,19 +60,8 @@ export default {
       }
     }
   },
-  methods:{
-    preview(){
-      this.previewMode = true
-    },
-    exitPreview(){
-      this.previewMode = false
-    },
-    signUp(){
-      this.signUpMode = true
-    }
-  },
   components: {
-    Topbar, Editor, Preview, SignUp
+    Topbar, Editor, Preview, Login
   }
 }
 </script>
@@ -131,7 +120,7 @@ export default {
       border-radius: 3px;
       overflow: auto;
     }
-    > .signUp {
+    > .login {
       position: absolute;
       width: 300px;
       height: 400px;

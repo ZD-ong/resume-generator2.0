@@ -5,7 +5,7 @@
     </div>
     <div class="actions">
       <el-row>
-        <el-button type="danger" @click="signUp">登录</el-button>
+        <el-button type="danger" @click="onLogin">登录</el-button>
       </el-row>
     </div>
 </div>
@@ -13,9 +13,8 @@
 <script>
 export default {
   methods: {
-    signUp(){
-      this.$emit('xxx')
-      this.$emit('yyy')
+    onLogin(){
+      this.$emit('goToLogin')
     }
   }
 }
