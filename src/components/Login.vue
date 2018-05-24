@@ -69,10 +69,13 @@
       },
       onLogin(){
         AV.User.logIn(this.formData.username,this.formData.password).then((user)=>{
-          console.log(AV.User.current())
           this.$emit('logined')
         },(error)=>{
-          console.log(error)
+          if(error.code === 211){
+            alert('该用户名不存在')
+          }else if(error.code === 210){
+            alert('用户名与密码不匹配')
+          }
         })
       }
     }

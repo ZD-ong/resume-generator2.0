@@ -5,8 +5,8 @@
     </div>
     <div class="actions">
       <el-row>
-        <el-button type="danger" @click="onLogin">登录</el-button>
-        <el-button type="danger" @click="onLogOut" plain>注销</el-button>
+        <el-button type="danger" @click="onLogin" >登录</el-button>
+        <el-button type="danger" @click="onLogOut" plain >注销</el-button>
       </el-row>
     </div>
 </div>
@@ -17,13 +17,16 @@
 export default {
   data(){
     return {
-      currentUser: null
+      currentUser: {
+        id: ''
+      }
     }
   },
   created(){
     let currentUser = AV.User.current()
     if(currentUser){
-      this.currentUser = currentUser
+      this.currentUser.id = currentUser.id
+      console.log(currentUser)
     }
   },
   methods: {
