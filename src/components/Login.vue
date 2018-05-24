@@ -5,36 +5,38 @@
         <h2>登录</h2>
         <i class="el-icon-back" @click="$emit('back'),signUpVisible=false"></i>
         <div class="formRow">
-          <el-input type="text" size="medium" placeholder="请输入邮箱" v-model="formData.email">
+          <el-input type="text" size="medium" placeholder="请输入邮箱" v-model="formData.username">
           </el-input>
         </div>
         <div class="formRow">
-          <el-input type="passsword" size="medium" placeholder="请输入密码" v-model="formData.password">
+          <el-input type="password" size="medium" placeholder="请输入密码" v-model="formData.password">
           </el-input>
         </div>
         <div class="formActions">
           <el-button type="danger" size="mini" @click="onClickSignUp" plain>注册</el-button>
-          <el-button type="danger" size="mini" native-type="submit">提交</el-button>
+          <el-button type="danger" size="mini" native-type="submit">登录</el-button>
         </div>
       </form>
       <form @submit.prevent="onSignUp" v-show="signUpVisible">
         <h2>注册</h2>
         <i class="el-icon-back" @click="$emit('back'),signUpVisible=false"></i>
         <div class="formRow">
-          <el-input type="text" size="medium" placeholder="请输入邮箱" v-model="formData.email">
+          <el-input type="text" size="medium" placeholder="请输入邮箱" v-model="formData.username">
           </el-input>
         </div>
         <div class="formRow">
-          <el-input type="passsword" size="medium" placeholder="请输入密码" v-model="formData.password">
+          <el-input type="password" size="medium" placeholder="请输入密码" v-model="formData.password">
           </el-input>
         </div>
         <div class="formActions">
-          <el-button type="danger" size="mini" native-type="submit">提交</el-button>
+          <el-button type="danger" size="mini" native-type="submit">注册</el-button>
         </div>
       </form>
     </div>
 </template>
 <script>
+  import AV from 'leancloud-storage'
+  import '../main.js'
 
 
   export default {
@@ -43,7 +45,7 @@
       return {
         signUpVisible: false,
         formData: {
-          email: '',
+          username: '',
           password: ''
         }
       }
@@ -51,6 +53,26 @@
     methods: {
       onClickSignUp(){
         this.signUpVisible = true
+      },
+      onSignUp(){
+        const user = new AV.User()
+        user.setUsername(this.formData.username)
+        user.setPassword(this.formData.password)
+
+        user.signUp().then(function(loginedUser){
+          alert('注册成功！')
+          console.log(loginedUser)
+        },(error)=>{
+          alert(error.rawMessage)
+        })
+      },
+      onLogin(){
+        AV.User.logIn(this.formData.username,this.formData.password).then(()=>{
+          this.$emit('logined')
+          alert('登录成功！')
+        },(error)=>{
+          console.log(error)
+        })
       }
     }
   }

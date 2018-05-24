@@ -4,7 +4,7 @@
     <main>
       <Editor :resume="resume" class="editor" v-show="!previewMode&&!LoginMode"></Editor>
       <Preview :resume="resume" class="preview" @preview="previewMode = true" @exitPreview="previewMode = false" v-show="!LoginMode"></Preview>
-      <Login :resume="resume" class="login" v-show="LoginMode" @goToSignUp="goToSignUp" @back="LoginMode=false"></Login>
+      <Login :resume="resume" class="login" v-show="LoginMode" @back="LoginMode=false" @logined="LoginMode=false"></Login>
     </main>
   </div>
 </template>
@@ -14,6 +14,9 @@ import Topbar from './components/Topbar'
 import Editor from './components/Editor'
 import Preview from './components/Preview'
 import Login from './components/Login'
+
+
+
 
 export default {
   name: 'App',
