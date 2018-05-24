@@ -2,7 +2,7 @@
   <div id="preview"  :class="{fullScreen: view}">
     <el-button type="danger" icon="el-icon-view" size="mini" class="view" @click="preview"></el-button>
     <el-button type="danger" icon="el-icon-edit" size="mini" class="view" v-show="view" @click="exitPreview"></el-button>
-    <el-button type="danger" icon="el-icon-check" circle class="save"></el-button>
+    <el-button type="danger" icon="el-icon-check" circle class="save" @click="onClickSave"></el-button>
     <div class="wrap">
       <h1>{{resume.profile.name || '姓名'}}</h1>
       <p>城市：{{resume.profile.city}} | 年龄：{{resume.profile.age}} | 电话：{{resume.profile.phone}} | 邮箱：{{resume.profile.email}}</p>
@@ -66,11 +66,13 @@
         </ul>
       </section>
       </div>
-      
+
     </div>
   </div>
 </template>
 <script>
+  import AV from 'leancloud-storage'
+  import '../main.js'
   export default {
     props:['resume'],
     data(){
@@ -99,6 +101,25 @@
       exitPreview(){
         this.$emit('exitPreview')
         this.view = false
+      },
+      onClickSave(){
+        let currentUser = AV.User.current()
+        if(currentUser){
+          this.saveResume()
+        }
+      },
+      saveResume(){
+        let {id} = AV.User.current()
+        // 第一个参数是 className，第二个参数是 objectId
+        let user = AV.Object.createWithoutData('User', id)
+        // 修改属性
+        user.set('resume', this.resume)
+        // 保存到云端
+        user.save().then(()=>{
+          alert('保存成功！')
+        },()=>{
+          alert('保存失败。。。')
+        })
       }
     }
   }
@@ -162,5 +183,5 @@
       }
     }
   }
-  
+
 </style>

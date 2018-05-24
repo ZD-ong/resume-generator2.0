@@ -47,7 +47,8 @@
         formData: {
           username: '',
           password: ''
-        }
+        },
+        currentUser: null
       }
     },
     methods: {
@@ -59,17 +60,17 @@
         user.setUsername(this.formData.username)
         user.setPassword(this.formData.password)
 
-        user.signUp().then(function(loginedUser){
-          alert('注册成功！')
-          console.log(loginedUser)
+        user.signUp().then(()=>{
+          AV.User.logIn(this.formData.username,this.formData.password)
+          this.$emit('logined')
         },(error)=>{
           alert(error.rawMessage)
         })
       },
       onLogin(){
-        AV.User.logIn(this.formData.username,this.formData.password).then(()=>{
+        AV.User.logIn(this.formData.username,this.formData.password).then((user)=>{
+          console.log(AV.User.current())
           this.$emit('logined')
-          alert('登录成功！')
         },(error)=>{
           console.log(error)
         })

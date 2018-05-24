@@ -6,15 +6,34 @@
     <div class="actions">
       <el-row>
         <el-button type="danger" @click="onLogin">登录</el-button>
+        <el-button type="danger" @click="onLogOut" plain>注销</el-button>
       </el-row>
     </div>
 </div>
 </template>
 <script>
+  import AV from 'leancloud-storage'
+  import '../main.js'
 export default {
+  data(){
+    return {
+      currentUser: null
+    }
+  },
+  created(){
+    let currentUser = AV.User.current()
+    if(currentUser){
+      this.currentUser = currentUser
+    }
+  },
   methods: {
     onLogin(){
       this.$emit('goToLogin')
+    },
+    onLogOut(){
+      this.currentUser = null
+      AV.User.logOut()
+      setTimeout(window.location.reload(),0)
     }
   }
 }
